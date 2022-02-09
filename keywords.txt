@@ -1,0 +1,34 @@
+#######################################
+# Datatypes (KEYWORD1)
+#######################################
+
+
+#######################################
+# Methods and Functions (KEYWORD2)
+#######################################
+
+###################################
+# Class HardwareTimer
+###################################
+
+isValidPWMPin	KEYWORD2
+isValidPWMFreq	KEYWORD2
+isValidPWMDutyCycle	KEYWORD2
+isValidPWMSettings	KEYWORD2
+setPWM	KEYWORD2
+stopPWM	KEYWORD2
+
+
+#######################################
+# Constants (LITERAL1)
+#######################################
+
+nRF52_MBED_PWM_VERSION  LITERAL1
+nRF52_MBED_PWM_VERSION_MAJOR  LITERAL1
+nRF52_MBED_PWM_VERSION_MINOR  LITERAL1
+nRF52_MBED_PWM_VERSION_PATCH  LITERAL1
+nRF52_MBED_PWM_VERSION_INT  LITERAL1
+
+_PWM_LOGLEVEL_  LITERAL1
+
+
