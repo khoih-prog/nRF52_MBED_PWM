@@ -13,7 +13,6 @@
 
 * [Why do we need this nRF52_MBED_PWM library](#why-do-we-need-this-nRF52_MBED_PWM-library)
   * [Features](#features)
-  * [Why using hardware-based PWM is better](#why-using-hardware-based-pwm-is-better)
   * [Currently supported Boards](#currently-supported-boards)
 * [Changelog](changelog.md)
 * [Prerequisites](#prerequisites)
@@ -51,7 +50,7 @@
 
 ### Features
 
-This library enables you to use Hardware Timers on an nRF52840-based Nano_33_BLE board to create and output PWM to pins. 
+This library enables you to use Hardware-based PWM to create and output PWM to pins on an nRF52840-based Nano_33_BLE board. 
 
 ---
 
@@ -65,25 +64,6 @@ Being hardware-based PWM, their executions are not blocked by bad-behaving funct
 
 This non-being-blocked important feature is absolutely necessary for mission-critical tasks.
 
----
-
-#### Why using hardware-based PWM is better
-
-Imagine you have a system with a **mission-critical** function, measuring water level and control the sump pump or doing something much more important. You normally use a software timer to poll, or even place the function in loop(). But what if another function is **blocking** the loop() or setup().
-
-So your function **might not be executed, and the result would be disastrous.**
-
-You'd prefer to have your function called, no matter what happening with other functions (busy loop, bug, etc.).
-
-The correct choice is to use a Hardware Timer with **Interrupt** to call your function.
-
-These hardware timers, using interrupt, still work even if other functions are blocking. Moreover, they are much more **precise** (certainly depending on clock frequency accuracy) than other software timers using millis() or micros(). That's necessary if you need to measure some data requiring better accuracy.
-
-Functions using normal software timers, relying on loop() and calling millis(), won't work if the loop() or setup() is blocked by certain operation. For example, certain function is blocking while it's connecting to WiFi or some services.
-
-The catch is **your function is now part of an ISR (Interrupt Service Routine), and must be lean / mean, and follow certain rules.** More to read on:
-
-[**HOWTO Attach Interrupt**](https://www.arduino.cc/reference/en/language/functions/external-interrupts/attachinterrupt/)
 
 ---
 
@@ -122,7 +102,7 @@ Another way to install is to:
 
 1. Install [VS Code](https://code.visualstudio.com/)
 2. Install [PlatformIO](https://platformio.org/platformio-ide)
-3. Install [**nRF52_MBED_PWM** library](https://platformio.org/lib/show/12853/nRF52_MBED_PWM) by using [Library Manager](https://platformio.org/lib/show/12853/nRF52_MBED_PWM/installation). Search for **nRF52_MBED_PWM** in [Platform.io Author's Libraries](https://platformio.org/lib/search?query=author:%22Khoi%20Hoang%22)
+3. Install [**nRF52_MBED_PWM** library](https://platformio.org/lib/show/xxxxx/nRF52_MBED_PWM) by using [Library Manager](https://platformio.org/lib/show/12853/nRF52_MBED_PWM/installation). Search for **nRF52_MBED_PWM** in [Platform.io Author's Libraries](https://platformio.org/lib/search?query=author:%22Khoi%20Hoang%22)
 4. Use included [platformio.ini](platformio/platformio.ini) file from examples to ensure that all dependent libraries will installed automatically. Please visit documentation for the other options and examples at [Project Configuration File](https://docs.platformio.org/page/projectconf.html)
 
 
