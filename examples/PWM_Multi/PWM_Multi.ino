@@ -206,9 +206,6 @@ void setup()
   Serial.print(F("\nStarting PWM_Multi on ")); Serial.println(BOARD_NAME);
   Serial.println(nRF52_MBED_PWM_VERSION);
 
-  // Automatically retrieve TIM instance and channel associated to pin
-  // This is used to be compatible with all STM32 series automatically.
-
   startAllPWM();
 }
 

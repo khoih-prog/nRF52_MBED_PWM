@@ -51,7 +51,7 @@
 
 ### Features
 
-This library enables you to use Hardware Timers on an STM32H7-based Nano_33_BLE board to create and output PWM to pins. 
+This library enables you to use Hardware Timers on an nRF52840-based Nano_33_BLE board to create and output PWM to pins. 
 
 ---
 
@@ -405,9 +405,6 @@ void setup()
 
   Serial.print(F("\nStarting PWM_Multi on ")); Serial.println(BOARD_NAME);
   Serial.println(nRF52_MBED_PWM_VERSION);
-
-  // Automatically retrieve TIM instance and channel associated to pin
-  // This is used to be compatible with all STM32 series automatically.
 
   startAllPWM();
 }
