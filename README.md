@@ -24,6 +24,7 @@
 * [Usage](#usage)
   * [1. Prepare PWM settings](#1-Prepare-PWM-settings)
   * [2. Set PWM Frequency and dutycycle](#2-Set-PWM-Frequency-and-dutycycle)
+  * [3. Read actual PWM Parameters](#3-Read-actual-PWM-Parameters)
 * [Examples](#examples)
   * [ 1. PWM_Multi](examples/PWM_Multi)
   * [ 2. PWM_Single](examples/PWM_Single)
@@ -171,6 +172,42 @@ void setup()
 }  
 ```
 
+#### 3. Read actual PWM Parameters
+
+Use these functions
+
+```
+float getFreq(mbed::PwmOut* &pwm);
+
+float getDutyCycle(mbed::PwmOut* &pwm);
+
+float getPulseWidth_uS(mbed::PwmOut* &pwm);
+
+float getPeriod_uS(mbed::PwmOut* &pwm);
+```
+
+For example
+
+```
+// All the digital pins on Arduino Nano 33 BLE sense are PWM-enabled pins which are numbered from D0 to D13
+uint32_t myPin  = D2;
+
+float dutyCycle = 50.0f;
+
+float freq      = 5000.0f;
+
+mbed::PwmOut* pwm   = NULL;
+
+setPWM(pwm, myPin, freq, dutyCycle);
+
+if (pwm)
+{
+  Serial.print(getPulseWidth_uS(pwm)); Serial.print(F("\t\t"));
+  Serial.print(getDutyCycle(pwm)); Serial.print(F("\t\t"));
+  Serial.print(getPeriod_uS(pwm));
+}
+```
+
 ---
 ---
 
@@ -279,7 +316,7 @@ void stopAllPWM()
 
 void printLine()
 {
-  Serial.println(F("\n=========================================================================================================="));
+  Serial.println(F("\n========================================================="));
 }
 
 void printPulseWidth()
@@ -304,7 +341,7 @@ void printPulseWidth()
     {
       if (pwm[index])
       {
-        Serial.print((float) pwm[index]->read_pulsewitdth_us()); Serial.print(F("\t\t"));
+        Serial.print(getPulseWidth_uS(pwm[index])); Serial.print(F("\t\t"));
       }
     }
 
@@ -406,31 +443,28 @@ The following is the sample terminal output when running example [PWM_Single](ex
 
 ```
 Starting PWM_Single on Nano_33_BLE
-nRF52_MBED_PWM v1.0.0
+nRF52_MBED_PWM v1.0.1
 [PWM] Freq = 5000.00, DutyCycle % = 50.00, DutyCycle = 0.50, Pin = 2
 
-========
-PW (us)
-========
-100.00		
+============================================
+PW (us)		DutyCycle	Period (uS)
+============================================
+100.00		50.00		200.00
 Stop PWM
-0.00		
-0.00		
+0.00		0.00		1000.00
+0.00		0.00		1000.00
 Change PWM
-25.00		
-25.00		
+25.00		25.00		100.00
+25.00		25.00		100.00
 Restore PWM
-100.00		
-100.00		
+100.00		50.00		200.00
+100.00		50.00		200.00
 Stop PWM
-0.00		
-0.00		
+0.00		0.00		1000.00
+0.00		0.00		1000.00
 Change PWM
-25.00		
-25.00		
-Restore PWM
-100.00		
-100.00
+25.00		25.00		100.00
+25.00		25.00		100.00
 ```
 
 ---
@@ -440,17 +474,16 @@ Restore PWM
 The following is the sample terminal output when running example [**PWM_Multi**](examples/PWM_Multi) on **Nano_33_BLE** to demonstrate how to start multiple PWM channels, then stop, change, restore the PWM settings on-the-fly.
 
 ```
-
 Starting PWM_Multi on Nano_33_BLE
-nRF52_MBED_PWM v1.0.0
+nRF52_MBED_PWM v1.0.1
 [PWM] Freq = 1000.00, 	DutyCycle % = 50.00, 	DutyCycle = 0.50, 	Pin = 2
 [PWM] Freq = 2500.00, 	DutyCycle % = 50.00, 	DutyCycle = 0.50, 	Pin = 3
 [PWM] Freq = 4000.00, 	DutyCycle % = 50.00, 	DutyCycle = 0.50, 	Pin = 4
 [PWM] Freq = 5000.00, 	DutyCycle % = 50.00, 	DutyCycle = 0.50, 	Pin = 5
 
-==========================================================================================================
+=========================================================
 PW (us) 0	PW (us) 1	PW (us) 2	PW (us) 3	
-==========================================================================================================
+=========================================================
 500.00		200.00		125.00		100.00		
 Stop all PWM
 0.00		0.00		0.00		0.00		
@@ -469,7 +502,7 @@ Change all PWM
 125.00		50.00		31.25		25.00		
 Restore all PWM
 500.00		200.00		125.00		100.00		
-500.00		200.00		125.00		100.00	
+500.00		200.00		125.00		100.00
 ```
 
 
@@ -520,6 +553,7 @@ Submit issues to: [nRF52_MBED_PWM issues](https://github.com/khoih-prog/nRF52_MB
 3. Permit to start, stop, modify, restore PWM settings on-the-fly
 4. Optimize library code by using `reference-passing` instead of `value-passing`
 5. Use `h-only` style
+6. Add functions to read PWM parameters.
 
 
 ---

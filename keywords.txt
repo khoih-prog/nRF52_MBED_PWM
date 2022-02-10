@@ -17,6 +17,10 @@ isValidPWMDutyCycle	KEYWORD2
 isValidPWMSettings	KEYWORD2
 setPWM	KEYWORD2
 stopPWM	KEYWORD2
+getFreq KEYWORD2
+getDutyCycle  KEYWORD2
+getPulseWidth_uS  KEYWORD2
+getPeriod_uS  KEYWORD2
 
 
 #######################################

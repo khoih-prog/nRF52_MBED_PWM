@@ -83,7 +83,7 @@ void stopMyPWM()
 
 void printLine()
 {
-  Serial.println(F("\n========"));
+  Serial.println(F("\n============================================"));
 }
 
 void printPulseWidth()
@@ -94,7 +94,7 @@ void printPulseWidth()
   {
     printLine();
     
-    Serial.print(F("PW (us)"));
+    Serial.print(F("PW (us)\t\tDutyCycle\tPeriod (uS)"));
 
     printLine();
   }
@@ -103,7 +103,9 @@ void printPulseWidth()
   {
     if (pwm)
     {
-      Serial.print((float) pwm->read_pulsewitdth_us()); Serial.print(F("\t\t")); 
+      Serial.print(getPulseWidth_uS(pwm)); Serial.print(F("\t\t"));
+      Serial.print(getDutyCycle(pwm)); Serial.print(F("\t\t"));
+      Serial.print(getPeriod_uS(pwm));
     }
 
     Serial.println();

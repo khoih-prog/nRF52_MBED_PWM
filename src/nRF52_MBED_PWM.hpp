@@ -6,11 +6,12 @@
   Built by Khoi Hoang https://github.com/khoih-prog/nRF52_MBED_PWM
   Licensed under MIT license
 
-  Version: 1.0.0
+  Version: 1.0.1
 
   Version Modified By   Date      Comments
   ------- -----------  ---------- -----------
   1.0.0   K.Hoang      09/02/2022 Initial coding for Nano_33_BLE /  Nano_33_BLE_Sense using ArduinoCore-mbed mbed_nano core
+  1.0.1   K.Hoang      09/02/2022 Add functions to read PWM parameters
 *****************************************************************************************************************************/
 
 #pragma once
@@ -23,13 +24,13 @@
 #endif
 
 #ifndef nRF52_MBED_PWM_VERSION
-  #define nRF52_MBED_PWM_VERSION             "nRF52_MBED_PWM v1.0.0"
+  #define nRF52_MBED_PWM_VERSION             "nRF52_MBED_PWM v1.0.1"
   
   #define nRF52_MBED_PWM_VERSION_MAJOR       1
   #define nRF52_MBED_PWM_VERSION_MINOR       0
-  #define nRF52_MBED_PWM_VERSION_PATCH       0
+  #define nRF52_MBED_PWM_VERSION_PATCH       1
 
-  #define nRF52_MBED_PWM_VERSION_INT         1000000
+  #define nRF52_MBED_PWM_VERSION_INT         1000001
 #endif
 
 
@@ -58,13 +59,19 @@ bool isValidPWMFreq(const pin_size_t& pin, const float& frequency);
 
 bool isValidPWMDutyCycle(const pin_size_t& pin, const float& dutyCycle);
 
-bool isUsingHRTIM(const pin_size_t& pin);
-
 bool isValidPWMSettings(const pin_size_t& pin, const float& frequency, const float& dutyCycle);
 
 mbed::PwmOut* setPWM(mbed::PwmOut* &pwm, const pin_size_t& pin, const float& frequency, const float& dutyCycle);
 
 mbed::PwmOut* stopPWM(mbed::PwmOut* &pwm, const pin_size_t& pin);
+
+float getFreq(mbed::PwmOut* &pwm);
+
+float getDutyCycle(mbed::PwmOut* &pwm);
+
+float getPulseWidth_uS(mbed::PwmOut* &pwm);
+
+float getPeriod_uS(mbed::PwmOut* &pwm);
 
 #endif    // nRF52_MBED_PWM_HPP
 

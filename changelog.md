@@ -12,12 +12,19 @@
 ## Table of Contents
 
 * [Changelog](#changelog)
+  * [Releases v1.0.1](#Releases-v101)
   * [Initial Releases v1.0.0](#Initial-Releases-v100)
 
 ---
 ---
 
 ## Changelog
+
+### Releases v1.0.1
+
+1. Add functions to read PWM parameters
+2. Update examples
+
 
 ### Initial Releases v1.0.0
 

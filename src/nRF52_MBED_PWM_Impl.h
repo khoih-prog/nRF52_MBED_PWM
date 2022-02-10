@@ -6,11 +6,12 @@
   Built by Khoi Hoang https://github.com/khoih-prog/nRF52_MBED_PWM
   Licensed under MIT license
 
-  Version: 1.0.0
+  Version: 1.0.1
 
   Version Modified By   Date      Comments
   ------- -----------  ---------- -----------
   1.0.0   K.Hoang      09/02/2022 Initial coding for Nano_33_BLE /  Nano_33_BLE_Sense using ArduinoCore-mbed mbed_nano core
+  1.0.1   K.Hoang      09/02/2022 Add functions to read PWM parameters
 *****************************************************************************************************************************/
 
 #ifndef nRF52_MBED_PWM_IMPL_H
@@ -114,6 +115,31 @@ mbed::PwmOut* setPWM(mbed::PwmOut* &pwm, const pin_size_t& pin, const float& fre
 mbed::PwmOut* stopPWM(mbed::PwmOut* &pwm, const pin_size_t& pin)
 {
   return setPWM(pwm, pin, 1000.0f, 0.0f);
+}
+
+
+// Return Freq in float Hz
+float getFreq(mbed::PwmOut* &pwm)
+{
+  return (float) 1000000.0f / pwm->read_period_us();
+}
+
+// Return DutyCycle in float (from 0.0f - 100.0f)
+float getDutyCycle(mbed::PwmOut* &pwm)
+{
+  return (pwm->read() * 100.0f);
+}
+
+// Return PulseWidth in uint64_t uS
+float getPulseWidth_uS(mbed::PwmOut* &pwm)
+{
+  return ( pwm->read() * pwm->read_period_us() );
+}
+
+// Return PulseWidth in uint64_t uS
+float getPeriod_uS(mbed::PwmOut* &pwm)
+{
+  return (float) pwm->read_period_us();
 }
 
 #endif    // nRF52_MBED_PWM_IMPL_H

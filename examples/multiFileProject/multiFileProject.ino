@@ -14,8 +14,8 @@
   #error This code is designed to run on nRF52-based Nano-33-BLE boards using mbed-RTOS platform! Please check your Tools->Board setting.
 #endif
 
-#define nRF52_MBED_PWM_VERSION_MIN_TARGET      "nRF52_MBED_PWM v1.0.0"
-#define nRF52_MBED_PWM_VERSION_MIN             1000000
+#define nRF52_MBED_PWM_VERSION_MIN_TARGET      "nRF52_MBED_PWM v1.0.1"
+#define nRF52_MBED_PWM_VERSION_MIN             1000001
 
 #include "multiFileProject.h"
 

@@ -99,7 +99,7 @@ void stopAllPWM()
 
 void printLine()
 {
-  Serial.println(F("\n=========================================================================================================="));
+  Serial.println(F("\n========================================================="));
 }
 
 void printPulseWidth()
@@ -124,7 +124,7 @@ void printPulseWidth()
     {
       if (pwm[index])
       {
-        Serial.print((float) pwm[index]->read_pulsewitdth_us()); Serial.print(F("\t\t"));
+        Serial.print(getPulseWidth_uS(pwm[index])); Serial.print(F("\t\t"));
       }
     }
 

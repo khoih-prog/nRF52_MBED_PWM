@@ -31,7 +31,7 @@ Arduino IDE version: 1.8.19
 Nano_33_BLE board
 Arduino mbed_nano` core v2.7.2
 OS: Ubuntu 20.04 LTS
-Linux xy-Inspiron-3593 5.4.0-96-generic #109-Ubuntu SMP Wed Jan 12 16:49:16 UTC 2022 x86_64 x86_64 x86_64 GNU/Linux
+Linux xy-Inspiron-3593 5.4.0-99-generic #112-Ubuntu SMP Thu Feb 3 13:50:55 UTC 2022 x86_64 x86_64 x86_64 GNU/Linux
 
 Context:
 I encountered a crash while using PWM.
