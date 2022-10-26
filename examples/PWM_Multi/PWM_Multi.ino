@@ -39,11 +39,12 @@ void startAllPWM()
   digitalWrite(LEDG, LED_ON);
   digitalWrite(LEDB, LED_OFF);
   digitalWrite(LEDR, LED_OFF);
-  
+
   for (uint8_t index = 0; index < NUM_OF_PINS; index++)
   {
-    PWM_LOGERROR7("Freq = ", freq[index], ", \tDutyCycle % = ", dutyCycle[index], ", \tDutyCycle = ", dutyCycle[index] / 100, ", \tPin = ", pins[index]);
-    
+    PWM_LOGERROR7("Freq = ", freq[index], ", \tDutyCycle % = ", dutyCycle[index], ", \tDutyCycle = ",
+                  dutyCycle[index] / 100, ", \tPin = ", pins[index]);
+
     // setPWM(mbed::PwmOut* &pwm, pin_size_t pin, float frequency, float dutyCycle)
     setPWM(pwm[index], pins[index], freq[index], dutyCycle[index]);
   }
@@ -54,12 +55,12 @@ void restoreAllPWM()
   digitalWrite(LEDG, LED_ON);
   digitalWrite(LEDB, LED_OFF);
   digitalWrite(LEDR, LED_OFF);
-  
+
   for (uint8_t index = 0; index < NUM_OF_PINS; index++)
   {
     curFreq[index]      = freq[index];
     curDutyCycle[index] = dutyCycle[index];
-    
+
     // setPWM(mbed::PwmOut* &pwm, pin_size_t pin, float frequency, float dutyCycle)
     setPWM(pwm[index], pins[index], freq[index], dutyCycle[index]);
   }
@@ -70,12 +71,12 @@ void changeAllPWM()
   digitalWrite(LEDG, LED_OFF);
   digitalWrite(LEDB, LED_ON);
   digitalWrite(LEDR, LED_OFF);
-  
+
   for (uint8_t index = 0; index < NUM_OF_PINS; index++)
   {
     curFreq[index]      = freq[index] * 2;
     curDutyCycle[index] = dutyCycle[index] / 2;
-    
+
     // setPWM(mbed::PwmOut* &pwm, pin_size_t pin, float frequency, float dutyCycle)
     setPWM(pwm[index], pins[index], curFreq[index], curDutyCycle[index]);
   }
@@ -86,12 +87,12 @@ void stopAllPWM()
   digitalWrite(LEDG, LED_OFF);
   digitalWrite(LEDB, LED_OFF);
   digitalWrite(LEDR, LED_ON);
-  
+
   for (uint8_t index = 0; index < NUM_OF_PINS; index++)
   {
     curFreq[index]      = 1000.0f;
     curDutyCycle[index] = 0.0f;
-    
+
     //stopPWM(mbed::PwmOut* &pwm, pin_size_t pin)
     stopPWM(pwm[index], pins[index]);
   }
@@ -109,22 +110,25 @@ void printPulseWidth()
   if (num++ % 50 == 0)
   {
     printLine();
-    
+
     for (uint8_t index = 0; index < NUM_OF_PINS; index++)
     {
-      Serial.print(F("PW (us) ")); Serial.print(index); Serial.print(F("\t"));  
+      Serial.print(F("PW (us) "));
+      Serial.print(index);
+      Serial.print(F("\t"));
     }
 
     printLine();
   }
- 
+
   if (num > 1)
   {
     for (uint8_t index = 0; index < NUM_OF_PINS; index++)
     {
       if (pwm[index])
       {
-        Serial.print(getPulseWidth_uS(pwm[index])); Serial.print(F("\t\t"));
+        Serial.print(getPulseWidth_uS(pwm[index]));
+        Serial.print(F("\t\t"));
       }
     }
 
@@ -152,10 +156,10 @@ void check_status()
 
   if ( (millis() > changePWM_timeout) && (millis() > CHANGE_INTERVAL) )
   {
-    
+
     if (PWM_orig)
     {
-      if (count++ %2 == 0)
+      if (count++ % 2 == 0)
       {
         Serial.println("Stop all PWM");
         stopAllPWM();
@@ -163,7 +167,7 @@ void check_status()
       else
       {
         Serial.println("Change all PWM");
-        
+
         changeAllPWM();
 
         PWM_orig = !PWM_orig;
@@ -172,12 +176,12 @@ void check_status()
     else
     {
       Serial.println("Restore all PWM");
-      
+
       restoreAllPWM();
 
       PWM_orig = !PWM_orig;
     }
-      
+
     changePWM_timeout = millis() + CHANGE_INTERVAL;
   }
 }
@@ -199,11 +203,13 @@ void setup()
   }
 
   Serial.begin(115200);
-  while (!Serial);
+
+  while (!Serial && millis() < 5000);
 
   delay(100);
 
-  Serial.print(F("\nStarting PWM_Multi on ")); Serial.println(BOARD_NAME);
+  Serial.print(F("\nStarting PWM_Multi on "));
+  Serial.println(BOARD_NAME);
   Serial.println(nRF52_MBED_PWM_VERSION);
 
   startAllPWM();

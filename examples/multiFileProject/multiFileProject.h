@@ -1,6 +1,6 @@
 /****************************************************************************************************************************
   multiFileProject.h
-  
+
   For Nano_33_BLE or Nano_33_BLE_Sense boards
   Written by Khoi Hoang
 

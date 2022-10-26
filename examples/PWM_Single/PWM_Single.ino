@@ -47,10 +47,10 @@ void restorePWM()
   digitalWrite(LEDG, LED_ON);
   digitalWrite(LEDB, LED_OFF);
   digitalWrite(LEDR, LED_OFF);
-  
+
   curFreq      = freq;
   curDutyCycle = dutyCycle;
-  
+
   // setPWM(mbed::PwmOut* &pwm, pin_size_t pin, float frequency, float dutyCycle)
   setPWM(pwm, myPin, freq, dutyCycle);
 }
@@ -60,10 +60,10 @@ void changePWM()
   digitalWrite(LEDG, LED_OFF);
   digitalWrite(LEDB, LED_ON);
   digitalWrite(LEDR, LED_OFF);
-  
+
   curFreq      = freq * 2;
   curDutyCycle = dutyCycle / 2;
-  
+
   // setPWM(mbed::PwmOut* &pwm, pin_size_t pin, float frequency, float dutyCycle)
   setPWM(pwm, myPin, curFreq, curDutyCycle);
 }
@@ -73,10 +73,10 @@ void stopMyPWM()
   digitalWrite(LEDG, LED_OFF);
   digitalWrite(LEDB, LED_OFF);
   digitalWrite(LEDR, LED_ON);
-  
+
   curFreq      = 1000.0f;
   curDutyCycle = 0.0f;
-  
+
   //stopPWM(mbed::PwmOut* &pwm, pin_size_t pin)
   stopPWM(pwm, myPin);
 }
@@ -93,18 +93,20 @@ void printPulseWidth()
   if (num++ % 50 == 0)
   {
     printLine();
-    
+
     Serial.print(F("PW (us)\t\tDutyCycle\tPeriod (uS)"));
 
     printLine();
   }
- 
+
   if (num > 1)
   {
     if (pwm)
     {
-      Serial.print(getPulseWidth_uS(pwm)); Serial.print(F("\t\t"));
-      Serial.print(getDutyCycle(pwm)); Serial.print(F("\t\t"));
+      Serial.print(getPulseWidth_uS(pwm));
+      Serial.print(F("\t\t"));
+      Serial.print(getDutyCycle(pwm));
+      Serial.print(F("\t\t"));
       Serial.print(getPeriod_uS(pwm));
     }
 
@@ -132,10 +134,10 @@ void check_status()
 
   if ( (millis() > changePWM_timeout) && (millis() > CHANGE_INTERVAL) )
   {
-    
+
     if (PWM_orig)
     {
-      if (count++ %2 == 0)
+      if (count++ % 2 == 0)
       {
         Serial.println("Stop PWM");
         stopMyPWM();
@@ -143,7 +145,7 @@ void check_status()
       else
       {
         Serial.println("Change PWM");
-        
+
         changePWM();
 
         PWM_orig = !PWM_orig;
@@ -152,12 +154,12 @@ void check_status()
     else
     {
       Serial.println("Restore PWM");
-      
+
       restorePWM();
 
       PWM_orig = !PWM_orig;
     }
-      
+
     changePWM_timeout = millis() + CHANGE_INTERVAL;
   }
 }
@@ -176,11 +178,13 @@ void setup()
   digitalWrite(myPin, LOW);
 
   Serial.begin(115200);
-  while (!Serial);
+
+  while (!Serial && millis() < 5000);
 
   delay(100);
 
-  Serial.print(F("\nStarting PWM_Single on ")); Serial.println(BOARD_NAME);
+  Serial.print(F("\nStarting PWM_Single on "));
+  Serial.println(BOARD_NAME);
   Serial.println(nRF52_MBED_PWM_VERSION);
 
   startPWM();

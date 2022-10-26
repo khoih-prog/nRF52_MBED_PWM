@@ -12,6 +12,7 @@
 ## Table of Contents
 
 * [Changelog](#changelog)
+  * [Releases v1.0.2](#Releases-v102)
   * [Releases v1.0.1](#Releases-v101)
   * [Initial Releases v1.0.0](#Initial-Releases-v100)
 
@@ -20,11 +21,15 @@
 
 ## Changelog
 
+### Releases v1.0.2
+
+1. Add support to Seeeduino nRF52840-based boards such as **SEEED_XIAO_NRF52840 and SEEED_XIAO_NRF52840_SENSE**, etc. using Seeeduino `mbed` core
+2. Add astyle using `allman` style. Restyle the library
+
 ### Releases v1.0.1
 
 1. Add functions to read PWM parameters
 2. Update examples
-
 
 ### Initial Releases v1.0.0
 
