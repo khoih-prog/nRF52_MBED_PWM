@@ -23,7 +23,7 @@ A clear and concise description of what you expected to happen.
 
 A clear and concise description of what you expected to happen.
 
-### Debug and log (if applicable)
+### Debug and AT-command log (if applicable)
 
 A clear and concise description of what you expected to happen.
 
@@ -70,7 +70,7 @@ Steps to reproduce:
 
 Feel free to post feature requests. It's helpful if you can explain exactly why the feature would be useful.
 
-There are usually some outstanding feature requests in the [existing issues list](https://github.com/khoih-prog/FS_Nano33BLE/issues?q=is%3Aopen+is%3Aissue+label%3Aenhancement), feel free to add comments to them.
+There are usually some outstanding feature requests in the [existing issues list](https://github.com/khoih-prog/nRF52_MBED_PWM/issues?q=is%3Aopen+is%3Aissue+label%3Aenhancement), feel free to add comments to them.
 
 ---
 
@@ -83,12 +83,14 @@ Please use the `astyle` to reformat the updated library code as follows (demo fo
 1. Change directory to the library GitHub
 
 ```
-xy@xy-Inspiron-3593:~$ cd Arduino/xy/ESPAsync_WiFiManager_GitHub/
-xy@xy-Inspiron-3593:~/Arduino/xy/ESPAsync_WiFiManager_GitHub$
+xy@xy-Inspiron-3593:~$ cd Arduino/xy/nRF52_MBED_PWM_GitHub/
+xy@xy-Inspiron-3593:~/Arduino/xy/nRF52_MBED_PWM_GitHub$
 ```
 
 2. Issue astyle command
 
 ```
-xy@xy-Inspiron-3593:~/Arduino/xy/ESPAsync_WiFiManager_GitHub$ bash utils/restyle.sh
+xy@xy-Inspiron-3593:~/Arduino/xy/nRF52_MBED_PWM_GitHub$ bash utils/restyle.sh
 ```
+
+
