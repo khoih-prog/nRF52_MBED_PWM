@@ -2,9 +2,12 @@
 
 [![arduino-library-badge](https://www.ardu-badge.com/badge/nRF52_MBED_PWM.svg?)](https://www.ardu-badge.com/nRF52_MBED_PWM)
 [![GitHub release](https://img.shields.io/github/release/khoih-prog/nRF52_MBED_PWM.svg)](https://github.com/khoih-prog/nRF52_MBED_PWM/releases)
-[![GitHub](https://img.shields.io/github/license/mashape/apistatus.svg)](https://github.com/khoih-prog/nRF52_MBED_PWM/blob/master/LICENSE)
+[![GitHub](https://img.shields.io/github/license/mashape/apistatus.svg)](https://github.com/khoih-prog/nRF52_MBED_PWM/blob/main/LICENSE)
 [![contributions welcome](https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat)](#Contributing)
 [![GitHub issues](https://img.shields.io/github/issues/khoih-prog/nRF52_MBED_PWM.svg)](http://github.com/khoih-prog/nRF52_MBED_PWM/issues)
+
+<a href="https://www.buymeacoffee.com/khoihprog6" title="Donate to my libraries using BuyMeACoffee"><img src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png" alt="Donate to my libraries using BuyMeACoffee" style="height: 50px !important;width: 181px !important;" ></a>
+<a href="https://www.buymeacoffee.com/khoihprog6" title="Donate to my libraries using BuyMeACoffee"><img src="https://img.shields.io/badge/buy%20me%20a%20coffee-donate-orange.svg?logo=buy-me-a-coffee&logoColor=FFDD00" style="height: 20px !important;width: 200px !important;" ></a>
 
 ---
 ---
@@ -70,15 +73,17 @@ This non-being-blocked important feature is absolutely necessary for mission-cri
 
 ### Currently supported Boards
 
-1. **Nano_33_BLE boards**, using [**ArduinoCore-mbed mbed_nano** core](https://github.com/arduino/ArduinoCore-mbed)
+1. **MBED nRF52840-based boards such as Nano_33_BLE, Nano_33_BLE_Sense**, etc. using [**Arduino-mbed mbed_nano** core](https://github.com/arduino/ArduinoCore-mbed)
+2. **Seeeduino nRF52840-based boards such as SEEED_XIAO_NRF52840 and SEEED_XIAO_NRF52840_SENSE**, etc. using Seeeduino `mbed` core
 
 ---
 ---
 
 ## Prerequisites
 
- 1. [`Arduino IDE 1.8.19+` for Arduino](https://github.com/arduino/Arduino). [![GitHub release](https://img.shields.io/github/release/arduino/Arduino.svg)](https://github.com/arduino/Arduino/releases/latest)
- 2. [`ArduinoCore-mbed mbed_nano core 2.7.2+`](https://github.com/arduino/ArduinoCore-mbed) for Arduino **Nano_33_BLE** boards. [![GitHub release](https://img.shields.io/github/release/arduino/ArduinoCore-mbed.svg)](https://github.com/arduino/ArduinoCore-mbed/releases/latest)
+1. [`Arduino IDE 1.8.19+` for Arduino](https://github.com/arduino/Arduino). [![GitHub release](https://img.shields.io/github/release/arduino/Arduino.svg)](https://github.com/arduino/Arduino/releases/latest)
+2. [`Arduino mbed_nano core 3.4.1+`](https://github.com/arduino/ArduinoCore-mbed) for Arduino (Use Arduino Board Manager) MBED nRF52840-based boards such as **Nano_33_BLE, Nano_33_BLE_Sense**. [![GitHub release](https://img.shields.io/github/release/arduino/ArduinoCore-mbed.svg)](https://github.com/arduino/ArduinoCore-mbed/releases/latest)
+3. `Seeeduino mbed core 2.7.2+` for Seeeduino nRF52840-based boards such as **SEEED_XIAO_NRF52840 and SEEED_XIAO_NRF52840_SENSE**
 
 ---
 ---
@@ -95,9 +100,9 @@ You can also use this link [![arduino-library-badge](https://www.ardu-badge.com/
 Another way to install is to:
 
 1. Navigate to [**nRF52_MBED_PWM**](https://github.com/khoih-prog/nRF52_MBED_PWM) page.
-2. Download the latest release `nRF52_MBED_PWM-master.zip`.
-3. Extract the zip file to `nRF52_MBED_PWM-master` directory 
-4. Copy whole `nRF52_MBED_PWM-master` folder to Arduino libraries' directory such as `~/Arduino/libraries/`.
+2. Download the latest release `nRF52_MBED_PWM-main.zip`.
+3. Extract the zip file to `nRF52_MBED_PWM-main` directory 
+4. Copy whole `nRF52_MBED_PWM-main` folder to Arduino libraries' directory such as `~/Arduino/libraries/`.
 
 ### VS Code & PlatformIO
 
@@ -116,14 +121,14 @@ The current library implementation, using `xyz-Impl.h` instead of standard `xyz.
 
 You can include this `.hpp` file
 
-```
+```cpp
 // Can be included as many times as necessary, without `Multiple Definitions` Linker Error
 #include "nRF52_MBED_PWM.hpp"    //https://github.com/khoih-prog/nRF52_MBED_PWM
 ```
 
 in many files. But be sure to use the following `.h` file **in just 1 `.h`, `.cpp` or `.ino` file**, which must **not be included in any other file**, to avoid `Multiple Definitions` Linker Error
 
-```
+```cpp
 // To be included only in main(), .ino with setup() to avoid `Multiple Definitions` Linker Error
 #include "nRF52_MBED_PWM.h"      //https://github.com/khoih-prog/nRF52_MBED_PWM
 ```
@@ -150,7 +155,7 @@ Before using any Timer for a PWM channel, you have to make sure the Timer has no
 
 ### 1. Prepare PWM settings
 
-```
+```cpp
 // All the digital pins on Arduino Nano 33 BLE sense are PWM-enabled pins which are numbered from D0 to D13
 uint32_t myPin  = D2;
 
@@ -163,7 +168,7 @@ mbed::PwmOut* pwm   = NULL;
 
 #### 2. Set PWM Frequency and dutycycle
 
-```
+```cpp
 void setup()
 {
   ....
@@ -176,7 +181,7 @@ void setup()
 
 Use these functions
 
-```
+```cpp
 float getFreq(mbed::PwmOut* &pwm);
 
 float getDutyCycle(mbed::PwmOut* &pwm);
@@ -188,7 +193,7 @@ float getPeriod_uS(mbed::PwmOut* &pwm);
 
 For example
 
-```
+```cpp
 // All the digital pins on Arduino Nano 33 BLE sense are PWM-enabled pins which are numbered from D0 to D13
 uint32_t myPin  = D2;
 
@@ -223,214 +228,9 @@ if (pwm)
 
 ### Example [PWM_Multi](examples/PWM_Multi)
 
-```
-#if !( ARDUINO_ARCH_NRF52840 && TARGET_NAME == ARDUINO_NANO33BLE )
-  #error This code is designed to run on nRF52-based Nano-33-BLE boards using mbed-RTOS platform! Please check your Tools->Board setting.
-#endif
+https://github.com/khoih-prog/nRF52_MBED_PWM/blob/2b7d658fce0807ab926cd4c317ffecbf6765b0f6/examples/PWM_Multi/PWM_Multi.ino#L1-L221
 
-#define _PWM_LOGLEVEL_       1
 
-// To be included only in main(), .ino with setup() to avoid `Multiple Definitions` Linker Error
-#include "nRF52_MBED_PWM.h"
-
-#define LED_ON        LOW
-#define LED_OFF       HIGH
-
-// All the digital pins on Arduino Nano 33 BLE sense are PWM-enabled pins which are numbered from D0 to D13
-uint32_t pins[]       = { D2, D3, D4, D5 };
-
-#define NUM_OF_PINS       ( sizeof(pins) / sizeof(uint32_t) )
-
-float dutyCycle[]      = { 50.0f, 50.0f, 50.0f, 50.0f };
-
-float freq[]           = { 1000.0f, 2500.0f, 4000.0f, 5000.0f };
-
-float curDutyCycle[]   = { 50.0f, 50.0f, 50.0f, 50.0f };
-
-float curFreq[]        = { 1000.0f, 2500.0f, 4000.0f, 5000.0f };
-
-mbed::PwmOut* pwm[]    = { NULL, NULL, NULL, NULL };
-
-void startAllPWM()
-{
-  digitalWrite(LEDG, LED_ON);
-  digitalWrite(LEDB, LED_OFF);
-  digitalWrite(LEDR, LED_OFF);
-  
-  for (uint8_t index = 0; index < NUM_OF_PINS; index++)
-  {
-    PWM_LOGERROR7("Freq = ", freq[index], ", \tDutyCycle % = ", dutyCycle[index], ", \tDutyCycle = ", dutyCycle[index] / 100, ", \tPin = ", pins[index]);
-    
-    // setPWM(mbed::PwmOut* &pwm, pin_size_t pin, float frequency, float dutyCycle)
-    setPWM(pwm[index], pins[index], freq[index], dutyCycle[index]);
-  }
-}
-
-void restoreAllPWM()
-{
-  digitalWrite(LEDG, LED_ON);
-  digitalWrite(LEDB, LED_OFF);
-  digitalWrite(LEDR, LED_OFF);
-  
-  for (uint8_t index = 0; index < NUM_OF_PINS; index++)
-  {
-    curFreq[index]      = freq[index];
-    curDutyCycle[index] = dutyCycle[index];
-    
-    // setPWM(mbed::PwmOut* &pwm, pin_size_t pin, float frequency, float dutyCycle)
-    setPWM(pwm[index], pins[index], freq[index], dutyCycle[index]);
-  }
-}
-
-void changeAllPWM()
-{
-  digitalWrite(LEDG, LED_OFF);
-  digitalWrite(LEDB, LED_ON);
-  digitalWrite(LEDR, LED_OFF);
-  
-  for (uint8_t index = 0; index < NUM_OF_PINS; index++)
-  {
-    curFreq[index]      = freq[index] * 2;
-    curDutyCycle[index] = dutyCycle[index] / 2;
-    
-    // setPWM(mbed::PwmOut* &pwm, pin_size_t pin, float frequency, float dutyCycle)
-    setPWM(pwm[index], pins[index], curFreq[index], curDutyCycle[index]);
-  }
-}
-
-void stopAllPWM()
-{
-  digitalWrite(LEDG, LED_OFF);
-  digitalWrite(LEDB, LED_OFF);
-  digitalWrite(LEDR, LED_ON);
-  
-  for (uint8_t index = 0; index < NUM_OF_PINS; index++)
-  {
-    curFreq[index]      = 1000.0f;
-    curDutyCycle[index] = 0.0f;
-    
-    //stopPWM(mbed::PwmOut* &pwm, pin_size_t pin)
-    stopPWM(pwm[index], pins[index]);
-  }
-}
-
-void printLine()
-{
-  Serial.println(F("\n========================================================="));
-}
-
-void printPulseWidth()
-{
-  static uint32_t num = 0;
-
-  if (num++ % 50 == 0)
-  {
-    printLine();
-    
-    for (uint8_t index = 0; index < NUM_OF_PINS; index++)
-    {
-      Serial.print(F("PW (us) ")); Serial.print(index); Serial.print(F("\t"));  
-    }
-
-    printLine();
-  }
- 
-  if (num > 1)
-  {
-    for (uint8_t index = 0; index < NUM_OF_PINS; index++)
-    {
-      if (pwm[index])
-      {
-        Serial.print(getPulseWidth_uS(pwm[index])); Serial.print(F("\t\t"));
-      }
-    }
-
-    Serial.println();
-  }
-}
-
-#define PRINT_INTERVAL      10000L
-#define CHANGE_INTERVAL     20000L
-
-void check_status()
-{
-  static unsigned long checkstatus_timeout  = 0;
-  static unsigned long changePWM_timeout    = 0;
-
-  static bool PWM_orig  = true;
-  static uint32_t count = 0;
-
-  // Print every PRINT_INTERVAL (10) seconds.
-  if ((millis() > checkstatus_timeout) || (checkstatus_timeout == 0))
-  {
-    printPulseWidth();
-    checkstatus_timeout = millis() + PRINT_INTERVAL;
-  }
-
-  if ( (millis() > changePWM_timeout) && (millis() > CHANGE_INTERVAL) )
-  {
-    
-    if (PWM_orig)
-    {
-      if (count++ %2 == 0)
-      {
-        Serial.println("Stop all PWM");
-        stopAllPWM();
-      }
-      else
-      {
-        Serial.println("Change all PWM");
-        
-        changeAllPWM();
-
-        PWM_orig = !PWM_orig;
-      }
-    }
-    else
-    {
-      Serial.println("Restore all PWM");
-      
-      restoreAllPWM();
-
-      PWM_orig = !PWM_orig;
-    }
-      
-    changePWM_timeout = millis() + CHANGE_INTERVAL;
-  }
-}
-
-void setup()
-{
-  pinMode(LEDG, OUTPUT);
-  pinMode(LEDB, OUTPUT);
-  pinMode(LEDR, OUTPUT);
-
-  digitalWrite(LEDG, LED_OFF);
-  digitalWrite(LEDB, LED_OFF);
-  digitalWrite(LEDR, LED_OFF);
-
-  for (uint8_t index = 0; index < NUM_OF_PINS; index++)
-  {
-    pinMode(pins[index], OUTPUT);
-    digitalWrite(pins[index], LOW);
-  }
-
-  Serial.begin(115200);
-  while (!Serial);
-
-  delay(100);
-
-  Serial.print(F("\nStarting PWM_Multi on ")); Serial.println(BOARD_NAME);
-  Serial.println(nRF52_MBED_PWM_VERSION);
-
-  startAllPWM();
-}
-
-void loop()
-{
-  check_status();
-}
-```
 ---
 ---
 
@@ -443,7 +243,7 @@ The following is the sample terminal output when running example [PWM_Single](ex
 
 ```
 Starting PWM_Single on Nano_33_BLE
-nRF52_MBED_PWM v1.0.1
+nRF52_MBED_PWM v1.0.2
 [PWM] Freq = 5000.00, DutyCycle % = 50.00, DutyCycle = 0.50, Pin = 2
 
 ============================================
@@ -475,7 +275,7 @@ The following is the sample terminal output when running example [**PWM_Multi**]
 
 ```
 Starting PWM_Multi on Nano_33_BLE
-nRF52_MBED_PWM v1.0.1
+nRF52_MBED_PWM v1.0.2
 [PWM] Freq = 1000.00, 	DutyCycle % = 50.00, 	DutyCycle = 0.50, 	Pin = 2
 [PWM] Freq = 2500.00, 	DutyCycle % = 50.00, 	DutyCycle = 0.50, 	Pin = 3
 [PWM] Freq = 4000.00, 	DutyCycle % = 50.00, 	DutyCycle = 0.50, 	Pin = 4
@@ -554,7 +354,8 @@ Submit issues to: [nRF52_MBED_PWM issues](https://github.com/khoih-prog/nRF52_MB
 4. Optimize library code by using `reference-passing` instead of `value-passing`
 5. Use `h-only` style
 6. Add functions to read PWM parameters.
-
+7. Add support to Seeeduino nRF52840-based boards such as **SEEED_XIAO_NRF52840 and SEEED_XIAO_NRF52840_SENSE**, etc. using Seeeduino `mbed` core
+8. Add astyle using `allman` style. Restyle the library
 
 ---
 ---
@@ -578,7 +379,7 @@ If you want to contribute to this project:
 
 ### License
 
-- The library is licensed under [MIT](https://github.com/khoih-prog/nRF52_MBED_PWM/blob/master/LICENSE)
+- The library is licensed under [MIT](https://github.com/khoih-prog/nRF52_MBED_PWM/blob/main/LICENSE)
 
 ---
 
