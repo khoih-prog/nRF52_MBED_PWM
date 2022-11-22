@@ -6,8 +6,11 @@
 [![contributions welcome](https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat)](#Contributing)
 [![GitHub issues](https://img.shields.io/github/issues/khoih-prog/nRF52_MBED_PWM.svg)](http://github.com/khoih-prog/nRF52_MBED_PWM/issues)
 
+
 <a href="https://www.buymeacoffee.com/khoihprog6" title="Donate to my libraries using BuyMeACoffee"><img src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png" alt="Donate to my libraries using BuyMeACoffee" style="height: 50px !important;width: 181px !important;" ></a>
 <a href="https://www.buymeacoffee.com/khoihprog6" title="Donate to my libraries using BuyMeACoffee"><img src="https://img.shields.io/badge/buy%20me%20a%20coffee-donate-orange.svg?logo=buy-me-a-coffee&logoColor=FFDD00" style="height: 20px !important;width: 200px !important;" ></a>
+<a href="https://profile-counter.glitch.me/khoih-prog/count.svg" title="Total khoih-prog Visitor count"><img src="https://profile-counter.glitch.me/khoih-prog/count.svg" style="height: 30px;width: 200px;"></a>
+<a href="https://profile-counter.glitch.me/khoih-prog-nRF52_MBED_PWM/count.svg" title="nRF52_MBED_PWM Visitor count"><img src="https://profile-counter.glitch.me/khoih-prog-nRF52_MBED_PWM/count.svg" style="height: 30px;width: 200px;"></a>
 
 ---
 ---
@@ -258,7 +261,7 @@ https://github.com/khoih-prog/nRF52_MBED_PWM/blob/2b7d658fce0807ab926cd4c317ffec
 The following is the sample terminal output when running example [PWM_Single](examples/PWM_Single) on **Nano_33_BLE** to demonstrate how to start a single PWM channel, then stop, change, restore the PWM settings on-the-fly.
 
 
-```
+```cpp
 Starting PWM_Single on Nano_33_BLE
 nRF52_MBED_PWM v1.0.2
 [PWM] Freq = 5000.00, DutyCycle % = 50.00, DutyCycle = 0.50, Pin = 2
@@ -290,7 +293,7 @@ Change PWM
 
 The following is the sample terminal output when running example [**PWM_Multi**](examples/PWM_Multi) on **Nano_33_BLE** to demonstrate how to start multiple PWM channels, then stop, change, restore the PWM settings on-the-fly.
 
-```
+```cpp
 Starting PWM_Multi on Nano_33_BLE
 nRF52_MBED_PWM v1.0.2
 [PWM] Freq = 1000.00, 	DutyCycle % = 50.00, 	DutyCycle = 0.50, 	Pin = 2
@@ -402,6 +405,6 @@ If you want to contribute to this project:
 
 ## Copyright
 
-Copyright 2022- Khoi Hoang
+Copyright (c) 2022- Khoi Hoang
 
 
