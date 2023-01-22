@@ -1,6 +1,6 @@
 {
   "name": "nRF52_MBED_PWM",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "keywords": "timing, device, control, timer, pwm, interrupt, isr, isr-based, hardware-timer, mission-critical, accuracy, non-blocking, mbed, mbed-nano, nrf52840, nano-33-ble, nano-33-ble-sense, precise, hardware",
   "description": "This library enables you to use Hardware-based PWM to create and output PWM to pins on an nRF52840-based Nano_33_BLE board. These PWM channels, using nRF52840 Hardware PWM, still work even if other functions are blocking. Moreover, they are much more precise (certainly depending on clock frequency accuracy) than other software ir ISR-based PWM, using millis(), micros() or Timer Interrupt. This important feature is absolutely necessary for mission-critical tasks. You can start, stop, change and restore the settings of any PWM channel on-the-fly.",
   "authors":

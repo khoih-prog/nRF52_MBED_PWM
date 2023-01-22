@@ -32,7 +32,8 @@
 * [Examples](#examples)
   * [ 1. PWM_Multi](examples/PWM_Multi)
   * [ 2. PWM_Single](examples/PWM_Single)
-  * [ 3. multiFileProject](examples/multiFileProject). **New**
+  * [ 3. multiFileProject](examples/multiFileProject)
+  * [ 4. PWM_StepperControl](examples/PWM_StepperControl) **New**
 * [Example PWM_Multi](#example-PWM_Multi)
 * [Debug Terminal Output Samples](#debug-terminal-output-samples)
   * [1. PWM_Single on Nano_33_BLE](#1-PWM_Single-on-Nano_33_BLE)
@@ -101,7 +102,7 @@ This non-being-blocked important feature is absolutely necessary for mission-cri
 
 1. [`Arduino IDE 1.8.19+` for Arduino](https://github.com/arduino/Arduino). [![GitHub release](https://img.shields.io/github/release/arduino/Arduino.svg)](https://github.com/arduino/Arduino/releases/latest)
 2. [`Arduino mbed_nano core 3.4.1+`](https://github.com/arduino/ArduinoCore-mbed) for Arduino (Use Arduino Board Manager) MBED nRF52840-based boards such as **Nano_33_BLE, Nano_33_BLE_Sense**. [![GitHub release](https://img.shields.io/github/release/arduino/ArduinoCore-mbed.svg)](https://github.com/arduino/ArduinoCore-mbed/releases/latest)
-3. `Seeeduino mbed core 2.7.2+` for Seeeduino nRF52840-based boards such as **SEEED_XIAO_NRF52840 and SEEED_XIAO_NRF52840_SENSE**
+3. [`Seeeduino mbed core 2.9.0+`](https://github.com/Seeed-Studio/ArduinoCore-mbed) for Seeed nRF52840-based boards such as **SEEED_XIAO_NRF52840 and SEEED_XIAO_NRF52840_SENSE**. [![GitHub release](https://img.shields.io/github/release/Seeed-Studio/ArduinoCore-mbed.svg)](https://github.com/Seeed-Studio/ArduinoCore-mbed/releases/latest)
 
 ---
 ---
@@ -238,7 +239,8 @@ if (pwm)
 
  1. [PWM_Multi](examples/PWM_Multi)
  2. [PWM_Single](examples/PWM_Single)
- 3. [**multiFileProject**](examples/multiFileProject) **New**
+ 3. [multiFileProject](examples/multiFileProject)
+ 4. [**PWM_StepperControl**](examples/PWM_StepperControl) **New**
 
  
 ---
@@ -261,7 +263,7 @@ The following is the sample terminal output when running example [PWM_Single](ex
 
 ```cpp
 Starting PWM_Single on Nano_33_BLE
-nRF52_MBED_PWM v1.0.2
+nRF52_MBED_PWM v1.0.3
 [PWM] Freq = 5000.00, DutyCycle % = 50.00, DutyCycle = 0.50, Pin = 2
 
 ============================================
@@ -293,7 +295,7 @@ The following is the sample terminal output when running example [**PWM_Multi**]
 
 ```cpp
 Starting PWM_Multi on Nano_33_BLE
-nRF52_MBED_PWM v1.0.2
+nRF52_MBED_PWM v1.0.3
 [PWM] Freq = 1000.00, 	DutyCycle % = 50.00, 	DutyCycle = 0.50, 	Pin = 2
 [PWM] Freq = 2500.00, 	DutyCycle % = 50.00, 	DutyCycle = 0.50, 	Pin = 3
 [PWM] Freq = 4000.00, 	DutyCycle % = 50.00, 	DutyCycle = 0.50, 	Pin = 4
@@ -366,14 +368,16 @@ Submit issues to: [nRF52_MBED_PWM issues](https://github.com/khoih-prog/nRF52_MB
 
 ## DONE
 
-1. Basic hardware multi-channel PWM for **Nano_33_BLE**.
-2. Add Table of Contents
-3. Permit to start, stop, modify, restore PWM settings on-the-fly
-4. Optimize library code by using `reference-passing` instead of `value-passing`
-5. Use `h-only` style
-6. Add functions to read PWM parameters.
-7. Add support to Seeeduino nRF52840-based boards such as **SEEED_XIAO_NRF52840 and SEEED_XIAO_NRF52840_SENSE**, etc. using Seeeduino `mbed` core
-8. Add astyle using `allman` style. Restyle the library
+ 1. Basic hardware multi-channel PWM for **Nano_33_BLE**.
+ 2. Add Table of Contents
+ 3. Permit to start, stop, modify, restore PWM settings on-the-fly
+ 4. Optimize library code by using `reference-passing` instead of `value-passing`
+ 5. Use `h-only` style
+ 6. Add functions to read PWM parameters.
+ 7. Add support to Seeeduino nRF52840-based boards such as **SEEED_XIAO_NRF52840 and SEEED_XIAO_NRF52840_SENSE**, etc. using Seeeduino `mbed` core
+ 8. Add astyle using `allman` style. Restyle the library
+ 9. Add example [PWM_StepperControl](https://github.com/khoih-prog/nRF52_MBED_PWM/tree/main/examples/PWM_StepperControl) to demo how to control Stepper Motor using PWM
+
 
 ---
 ---
@@ -381,6 +385,15 @@ Submit issues to: [nRF52_MBED_PWM issues](https://github.com/khoih-prog/nRF52_MB
 ### Contributions and Thanks
 
 Many thanks for everyone for bug reporting, new feature suggesting, testing and contributing to the development of this library.
+
+1. Thanks to [Paul van Dinther](https://github.com/dinther) for proposing new way to use PWM to drive Stepper-Motor in [Using PWM to step a stepper driver #16](https://github.com/khoih-prog/RP2040_PWM/issues/16), leading to v2.0.3
+
+
+<table>
+  <tr>
+    <td align="center"><a href="https://github.com/dinther"><img src="https://github.com/dinther.png" width="100px;" alt="dinther"/><br /><sub><b>Paul van Dinther</b></sub></a><br /></td>
+  </tr>
+</table>
 
 ---
 
